@@ -1,0 +1,29 @@
+#--------------------------------------------------
+#
+#
+#--------------------------------------------------
+
+name: My-GitHub-Action-Basics
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  my_testing:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Print Hellow Message
+      run : echo "Hellow World from Testing job"
+
+
+  my_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Print Hellow Message
+      run : echo "Hellow World Deploy job"
+
+  
