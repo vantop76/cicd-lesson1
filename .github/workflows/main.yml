@@ -15,15 +15,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print Hellow Message
+    - name: Print Hellow Message From Testing
       run : echo "Hellow World from Testing job"
 
 
   my_deploy:
     runs-on: ubuntu-latest
+    needs: [my_testing]
     
     steps:
-    - name: Print Hellow Message
+    - name: Print Hellow Message From Deploy
       run : echo "Hellow World Deploy job"
 
   
