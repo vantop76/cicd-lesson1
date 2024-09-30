@@ -1,9 +1,12 @@
-#--------------------------------------------------
-#
-#
-#--------------------------------------------------
+#----------------------------------------------------------------------------------------------------
+#  GitHub Actions - Основы Автоматизации - DevOps - GitOps
+#       https://www.youtube.com/watch?v=Yg5rpke79X4&list=PLg5SS_4L6LYstwxTEOU05E0URTHnbtA0l&index=16
+#----------------------------------------------------------------------------------------------------
 
 name: My-GitHub-Action-Basics
+env:
+  APPLICATION_NAME    : "MyFlask"
+  DEPLOY_PACKAGE_NAME : "flask-deploy-ver-${{ github.sha }}"
 
 on:
   push:
@@ -15,16 +18,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print Hellow Message From Testing
+    - name: Print Hellow Message
       run : echo "Hellow World from Testing job"
-
+    
+    - name: Execute few commands
+      run : |
+        echo "Hellow Message 1"
+        echo "Hellow Message 2"
+        echo "Application Name is ${{ env.APPLICATION_NAME }}"
 
   my_deploy:
     runs-on: ubuntu-latest
-    needs: [my_testing]
     
     steps:
-    - name: Print Hellow Message From Deploy
+    - name: Print Hellow Message
       run : echo "Hellow World Deploy job"
 
-  
+    - name: "Printing Deployment Package"
+      run : |
+        echo "Deployment Package Name is ${{ env.DEPLOY_PACKAGE_NAME }}"
