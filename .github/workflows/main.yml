@@ -32,10 +32,11 @@ jobs:
 
     - name: Git clone my repo
       uses: actions/checkout@v4
+      repository: vantop76/cicd-lesson1
       with:
         path: main
-      run: git checkout HEAD^
-
+        # ref: ${{ github.event.pull_request.head.sha }}
+    
     - name: List current folder
       run : ls -la
 
