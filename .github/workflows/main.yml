@@ -37,7 +37,7 @@ jobs:
         # ref: ${{ github.event.pull_request.head.sha }}
     
     - name: List current folder
-      run : ls -la ./main            # Показать текущий каталог
+      run : ls -la ./main            # Показать каталог репозитория
 
 
   my_deploy:
