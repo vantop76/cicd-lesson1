@@ -42,6 +42,7 @@ jobs:
 
   my_deploy:
     runs-on: ubuntu-latest
+    needs: [my_testing]   # Запускать этот job-контейнер по завершении контейнера my_testing
     
     steps:
     - name: Print Hellow Message
