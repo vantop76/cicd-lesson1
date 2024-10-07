@@ -24,7 +24,7 @@ echo ""
 
 ### Создать токен - https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
 # Хранить токены и ключи от GitHub в репозитории не даст сам GitHub. Проверка безопасности не
-# не пропустит и выдаст ошибку при git push.
+# пропустит и выдаст ошибку при git push.
 #
 # git push origin
 
