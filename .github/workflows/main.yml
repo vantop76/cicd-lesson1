@@ -1,9 +1,12 @@
-#--------------------------------------------------
-#
-#
-#--------------------------------------------------
+#----------------------------------------------------------------------------------------------------
+#  GitHub Actions - Основы Автоматизации - DevOps - GitOps
+#       https://www.youtube.com/watch?v=Yg5rpke79X4&list=PLg5SS_4L6LYstwxTEOU05E0URTHnbtA0l&index=16
+#----------------------------------------------------------------------------------------------------
 
 name: My-GitHub-Action-Basics
+env:
+  APPLICATION_NAME    : "MyFlask"
+  DEPLOY_PACKAGE_NAME : "flask-deploy-ver-${{ github.sha }}"
 
 on:
   push:
@@ -17,13 +20,41 @@ jobs:
     steps:
     - name: Print Hellow Message
       run : echo "Hellow World from Testing job"
+    
+    - name: Execute few commands
+      run : |
+        echo "Hellow Message 1"
+        echo "Hellow Message 2"
+        echo "Application Name is ${{ env.APPLICATION_NAME }}"
+
+    - name: List current folder
+      run : ls -la
+
+    - name: Git clone my repo
+      uses: actions/checkout@v4
+      with:
+        path: main
+        # ref: ${{ github.event.pull_request.head.sha }}
+    
+    - name: List current folder
+      run : ls -la ./main            # Показать каталог репозитория
 
 
   my_deploy:
     runs-on: ubuntu-latest
+    needs: [my_testing]   # Запускать этот job-контейнер my_deploy по завершении контейнера my_testing
     
     steps:
     - name: Print Hellow Message
       run : echo "Hellow World Deploy job"
 
-  
+    - name: "Printing Deployment Package"
+      run : |
+        echo "Deployment Package Name is ${{ env.DEPLOY_PACKAGE_NAME }}"
+
+    - name: Lets test some packages if they are here 1
+      run : aws --version
+
+    - name: Lets test some packages if they are here 2
+      run : zip
+
